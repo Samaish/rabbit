@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_gradient"
+    android:alpha="0.7"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+    <LinearLayout
+        android:layout_width="match_parent"
+android:gravity="center"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="BANNER AD"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+       android:layout_margin="10dp"
+        android:background="@drawable/round_corner_shape_white"
+        android:layout_height="wrap_content">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/btnFindinPage"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+
+                        android:src="@drawable/round_corner_shape_black"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Find in Page"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/btnDownlaod"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/round_corner_shape_black"
+
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Downloads"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/btnForward"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/round_corner_shape_black"
+
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Forward"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/btnRefresh"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/round_corner_shape_black"
+
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Refresh"
+                        android:padding="5dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/gray_500"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+android:layout_marginBottom="10dp"
+            android:layout_height="1dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:id="@+id/btnHide"
+                android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="30dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:id="@+id/btnSetting"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:layout_centerInParent="true"
+                android:layout_height="30dp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:id="@+id/btnExit"
+                android:src="@drawable/ic_power_settings_new_black_24dp"
+                android:visibility="visible"
+                android:layout_alignParentLeft="true"
+                android:layout_height="30dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
