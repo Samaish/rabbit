@@ -593,10 +593,10 @@ tooltips.closeActiveTooltip();
 
                 ArrayList<Item> arrayList=new ArrayList<>();
                 arrayList.add(new Item("Google",R.mipmap.icn_google));
-                arrayList.add(new Item("Yahoo",R.mipmap.ic_launcher));
-                arrayList.add(new Item("Bing",R.mipmap.icn_google));
-                arrayList.add(new Item("DuckDuckGo",R.mipmap.icn_google));
-                arrayList.add(new Item("Youtube",R.mipmap.icn_google));
+                arrayList.add(new Item("Bing",R.drawable.bing));
+                arrayList.add(new Item("Yahoo",R.drawable.yah));
+                arrayList.add(new Item("DuckDuckGo",R.drawable.ddg));
+                arrayList.add(new Item("Youtube",R.drawable.youtube));
 
 
                 final MyAdapter adapter = new MyAdapter(BrowserActivity.this,R.layout.list_view_items,arrayList);
