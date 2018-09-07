@@ -45,10 +45,15 @@
         android:textStyle="bold"
         android:visibility="visible"></TextView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:padding="15dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@drawable/shape_circle"
@@ -59,7 +64,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:padding="15dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@drawable/shape_circle"
@@ -70,7 +75,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:padding="10dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@drawable/shape_circle"
@@ -79,12 +84,13 @@
         android:textSize="18sp"
         android:visibility="visible"></TextView>
 
+</LinearLayout>
+
     <RelativeLayout
         android:id="@+id/main_search_panel"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:minHeight="@dimen/layout_height_48dp"
-        android:background="@drawable/bg_gradient"
         android:visibility="gone">
         <LinearLayout
             android:layout_width="wrap_content"
