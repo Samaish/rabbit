@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="@dimen/layout_width_144dp"
-             android:layout_height="@dimen/layout_height_108dp"
-             android:background="@drawable/album_shape_dark">
+             android:layout_width="120dp"
+             android:layout_height="150dp"
+    android:background="@drawable/round_corner_shape_light">
 
     <ImageView android:id="@+id/album_cover"
                android:contentDescription="@null"
@@ -16,7 +16,7 @@
     </ImageView>
 
     <TextView android:id="@+id/album_title"
-              android:layout_width="@dimen/layout_width_144dp"
+              android:layout_width="120dp"
               android:layout_height="wrap_content"
               android:layout_gravity="center|bottom"
               android:layout_marginBottom="@dimen/layout_margin_4dp"
@@ -28,7 +28,7 @@
               android:textSize="@dimen/text_size_12sp"
               android:singleLine="true"
               android:ellipsize="none"
-              android:background="@color/shadow_dark">
+              android:background="#292e7a">
     </TextView>
 
 </FrameLayout>
