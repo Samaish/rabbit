@@ -17,12 +17,18 @@ import android.view.LayoutInflater;
 import android.webkit.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.andev.browser.Item;
+import com.andev.browser.Page;
+import com.andev.browser.PageHolder;
 import com.andev.browser.R;
 import com.andev.browser.Unit.BrowserUnit;
 import com.andev.browser.Unit.IntentUnit;
 import com.andev.browser.View.NinjaWebView;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 public class NinjaWebViewClient extends WebViewClient {
     private NinjaWebView ninjaWebView;
@@ -48,10 +54,12 @@ public class NinjaWebViewClient extends WebViewClient {
         this.white = false;
         this.enable = true;
     }
-
+ArrayList<String> mArrayList=new ArrayList<>();
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
+
+
 
         if (view.getTitle() == null || view.getTitle().isEmpty()) {
             ninjaWebView.update(context.getString(R.string.album_untitled), url);
@@ -63,7 +71,7 @@ public class NinjaWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-
+        PageHolder.getInstance().addPage(new Page(view.getUrl(),view.getTitle(),view.getFavicon()));
         if (!ninjaWebView.getSettings().getLoadsImagesAutomatically()) {
             ninjaWebView.getSettings().setLoadsImagesAutomatically(true);
         }
@@ -97,6 +105,7 @@ public class NinjaWebViewClient extends WebViewClient {
             } catch (Exception e) {} // When intent fail will crash
         }
 
+        Toast.makeText(context, "Loading webview client"+ url, Toast.LENGTH_SHORT).show();
         white = adBlock.isWhite(url);
         return super.shouldOverrideUrlLoading(view, url);
     }

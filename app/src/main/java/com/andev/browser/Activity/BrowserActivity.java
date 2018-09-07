@@ -49,6 +49,9 @@ import com.andev.browser.Browser.AlbumController;
 import com.andev.browser.Browser.BrowserContainer;
 import com.andev.browser.Browser.BrowserController;
 import com.andev.browser.InternetConnection;
+import com.andev.browser.Item;
+import com.andev.browser.Page;
+import com.andev.browser.PageHolder;
 import com.andev.browser.Service.ClearService;
 import com.andev.browser.Task.ScreenshotTask;
 import com.andev.browser.Database.Record;
@@ -60,6 +63,7 @@ import com.andev.browser.Unit.IntentUnit;
 import com.andev.browser.Unit.ViewUnit;
 import com.andev.browser.View.*;
 import com.andev.browser.adapter.MyAdapter;
+import com.andev.browser.adapter.PageLoadedAdapter;
 import com.spyhunter99.supertooltips.ToolTip;
 import com.spyhunter99.supertooltips.ToolTipManager;
 
@@ -70,6 +74,7 @@ import org.michaelbel.bottomsheet.BottomSheet;
 import java.io.File;
 import java.util.*;
 
+import static com.andev.browser.Unit.BrowserUnit.SEARCH_ENGINE_GOOGLE;
 import static com.andev.browser.Unit.IntentUnit.getContext;
 
 public class BrowserActivity extends Activity implements BrowserController {
@@ -541,22 +546,105 @@ else
         updateBookmarks();
         updateAutoComplete();
 
+
+
+omniboxBookmark.setOnLongClickListener(new View.OnLongClickListener() {
+    @Override
+    public boolean onLongClick(View view) {
+
+        final ToolTip toolTip;
+
+        if(PageHolder.getInstance().getArrLoadedURL().size()>5)
+        {
+            return false;
+        }
+        final PageLoadedAdapter adapter = new PageLoadedAdapter(BrowserActivity.this,R.layout.list_view_items, PageHolder.getInstance().getArrLoadedURL());
+        adapter.setBackStack(true);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view1 = inflater.inflate(R.layout.tooltip_list, null);
+        ListView  listView=(ListView)view1.findViewById(R.id.simpleListView1);
+        listView.setVisibility(View.VISIBLE);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Page item = adapter.getItem(position);
+                inputBox.setText(item.getUrl());
+                PageHolder.getInstance().clearCache();
+                updateAlbum(item.getUrl());
+tooltips.closeActiveTooltip();
+
+            }
+        });
+        listView.setAdapter(adapter);
+
+        toolTip = new ToolTip()
+                .withContentView(view1)
+                .withAnimationType(ToolTip.AnimationType.FROM_MASTER_VIEW)
+                .withShadow();
+
+        tooltips.showToolTip(toolTip, view);
+
+        return true;
+    }
+});
         omniboxBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ArrayList<String> arrayList=new ArrayList<>();
-                arrayList.add("Google");
-                arrayList.add("Yahoo");
-                arrayList.add("Bing");
-                arrayList.add("DuckDuckGo");
-                arrayList.add("Youtube");
-                MyAdapter adapter = new MyAdapter(BrowserActivity.this,R.layout.list_view_items, arrayList);
+                ArrayList<Item> arrayList=new ArrayList<>();
+                arrayList.add(new Item("Google",R.mipmap.icn_google));
+                arrayList.add(new Item("Yahoo",R.mipmap.ic_launcher));
+                arrayList.add(new Item("Bing",R.mipmap.icn_google));
+                arrayList.add(new Item("DuckDuckGo",R.mipmap.icn_google));
+                arrayList.add(new Item("Youtube",R.mipmap.icn_google));
+
+
+                final MyAdapter adapter = new MyAdapter(BrowserActivity.this,R.layout.list_view_items,arrayList);
                 LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                View view = inflater.inflate(R.layout.tooltip_list, null);
                 ListView  listView=(ListView)view.findViewById(R.id.simpleListView);
+                listView.setVisibility(View.VISIBLE);
                 listView.setAdapter(adapter);
+listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+searchEngineType=i;
+        switch (i)
+        {
+            case 0:
+            {
 
+                omniboxBookmark.setImageDrawable(getContext().getResources().getDrawable(adapter.getItem(i).getItemImage()));
+
+
+            }
+            break;
+            case 1:
+            {
+
+                omniboxBookmark.setImageDrawable(getContext().getResources().getDrawable(adapter.getItem(i).getItemImage()));
+            }
+            break;
+            case 2:
+            {
+                omniboxBookmark.setImageDrawable(getContext().getResources().getDrawable(adapter.getItem(i).getItemImage()));
+            }
+            break;
+            case 3:
+            {
+                omniboxBookmark.setImageDrawable(getContext().getResources().getDrawable(adapter.getItem(i).getItemImage()));
+            }
+            break;
+            case 4:
+            {
+                omniboxBookmark.setImageDrawable(getContext().getResources().getDrawable(adapter.getItem(i).getItemImage()));
+            }
+            break;
+        }
+
+        tooltips.closeActiveTooltip();
+    }
+});
                 ToolTip toolTip = new ToolTip()
                         .withContentView(view)
                         .withAnimationType(ToolTip.AnimationType.FROM_MASTER_VIEW)
@@ -627,6 +715,7 @@ else
             }
         });
     }
+
 
 
     private void showpopupwindows(final Activity context, Point p) {
@@ -1398,7 +1487,7 @@ ArrayList<WebView> arrWebViews=new ArrayList<>();
         }
         inputBox.clearFocus();
     }
-
+public static int searchEngineType=0;
     private void updateOmnibox() {
         if (currentAlbumController == null) {
             return;

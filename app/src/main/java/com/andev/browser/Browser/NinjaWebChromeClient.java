@@ -2,8 +2,14 @@ package com.andev.browser.Browser;
 
 import android.net.Uri;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.webkit.*;
+import android.widget.Toast;
+
+import com.andev.browser.Item;
+import com.andev.browser.Page;
+import com.andev.browser.PageHolder;
 import com.andev.browser.View.NinjaWebView;
 
 public class NinjaWebChromeClient extends WebChromeClient {
@@ -29,12 +35,16 @@ public class NinjaWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int progress) {
         super.onProgressChanged(view, progress);
         ninjaWebView.update(progress);
+
     }
 
     @Override
     public void onReceivedTitle(WebView view, String title) {
         super.onReceivedTitle(view, title);
         ninjaWebView.update(title, view.getUrl());
+
+
+        Log.e("Rabbit" ,view.getUrl()+"==="+view.getTitle());
     }
 
     @Deprecated

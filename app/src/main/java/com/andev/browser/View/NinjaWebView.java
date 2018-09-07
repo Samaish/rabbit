@@ -17,6 +17,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.andev.browser.Activity.BrowserActivity;
 import com.andev.browser.Browser.AdBlock;
 import com.andev.browser.Browser.AlbumController;
 import com.andev.browser.Browser.BrowserController;
@@ -27,12 +28,14 @@ import com.andev.browser.Browser.NinjaWebChromeClient;
 import com.andev.browser.Browser.NinjaWebViewClient;
 import com.andev.browser.Database.Record;
 import com.andev.browser.Database.RecordAction;
+import com.andev.browser.Item;
 import com.andev.browser.R;
 import com.andev.browser.Unit.BrowserUnit;
 import com.andev.browser.Unit.IntentUnit;
 import com.andev.browser.Unit.ViewUnit;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class NinjaWebView extends WebView implements AlbumController {
     private static final float[] NEGATIVE_COLOR = {
@@ -100,6 +103,16 @@ public class NinjaWebView extends WebView implements AlbumController {
         initWebSettings();
         initPreferences();
         initAlbum();
+
+    }
+
+
+
+
+    public void addLoadedUrlDetails(WebView webView)
+    {
+//        ((BrowserActivity)context).addPage(webView);
+
     }
 
     private synchronized void initWebView() {
@@ -262,8 +275,7 @@ public class NinjaWebView extends WebView implements AlbumController {
             NinjaToast.show(context, R.string.toast_load_error);
             return;
         }
-
-        url = BrowserUnit.queryWrapper(context, url.trim());
+        url = BrowserUnit.queryWrapper(context, url.trim(), BrowserActivity.searchEngineType);
         if (url.startsWith(BrowserUnit.URL_SCHEME_MAIL_TO)) {
             Intent intent = IntentUnit.getEmailIntent(MailTo.parse(url));
             context.startActivity(intent);
