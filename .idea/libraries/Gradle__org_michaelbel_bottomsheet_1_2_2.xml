@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.michaelbel:bottomsheet-1.2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-1.2.2.aar/caf00ee9aba5f8748f823227a4461d0f/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-1.2.2.aar/caf00ee9aba5f8748f823227a4461d0f/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.michaelbel/bottomsheet/1.2.2/3f9a1b65438572bab9c73301222259fe56f0b93b/bottomsheet-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
